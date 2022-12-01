@@ -1,15 +1,18 @@
 fun main() {
 
     fun calcMaxCalories(input: List<String>): Int {
-        return input
+        val listOfCaloriesSorted = input
             .joinToString()
             .filter { !it.isWhitespace() }
             .split(",,")
-            .maxOfOrNull { inputString ->
+            .map { inputString ->
                 inputString
                     .split(",")
                     .sumOf { Integer.valueOf(it) }
-            } ?: 0
+            }
+            .sortedDescending()
+            .toList()
+        return listOfCaloriesSorted[0] + listOfCaloriesSorted[1] + listOfCaloriesSorted[2]
     }
 
     val input = readInput("Day01")
