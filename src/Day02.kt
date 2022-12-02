@@ -18,23 +18,23 @@ fun main() {
         if (roundIsTied(oppenentChoice, myChoice)) {
             return 3 + calcScoreChoice(myChoice)
         }
-        when (oppenentChoice) {
+        return when (oppenentChoice) {
             "A" -> {
-                return if (myChoice == "Y") {
+                if (myChoice == "Y") {
                     8
                 } else {
                     3 // lose and Z = 3
                 }
             }
             "B" -> {
-                return if (myChoice == "Z") {
+                if (myChoice == "Z") {
                     9
                 } else {
                     1 // lose and X = 1
                 }
             }
             else -> {
-                return if (myChoice == "X") {
+                if (myChoice == "X") {
                     7
                 } else {
                     2 // lose and Y = 2
@@ -43,27 +43,32 @@ fun main() {
         }
     }
 
+    /**
+     * if strategy X => need to lose
+     * if strategy Y => need to tie
+     * if strategy Z => need to win
+     */
     fun calcMyChoice(opponentChoice: String, strategy: String): String {
-        when (opponentChoice) {
+        return when (opponentChoice) {
             "A" -> {
-                return when(strategy) {
-                    "X" -> "Z" // Need to lose
-                    "Y" -> "X" // Need to tied
-                    else -> "Y" // Need to win
+                when(strategy) {
+                    "X" -> "Z"
+                    "Y" -> "X"
+                    else -> "Y"
                 }
             }
             "B" -> {
-                return when(strategy) {
-                    "X" -> "X" // Need to lose
-                    "Y" -> "Y" // Need to tied
-                    else -> "Z" // Need to win
+                when(strategy) {
+                    "X" -> "X"
+                    "Y" -> "Y"
+                    else -> "Z"
                 }
             }
             else -> {
-                return when(strategy) {
-                    "X" -> "Y" // Need to lose
-                    "Y" -> "Z" // Need to tied
-                    else -> "X" // Need to win
+                when(strategy) {
+                    "X" -> "Y"
+                    "Y" -> "Z"
+                    else -> "X"
                 }
             }
         }
